@@ -8,6 +8,7 @@ The project is organized as follows:
 
 ETL_pipeline/
 ├── tests/
+
 │   ├── test_extract.py
 
 │   ├── test_load.py
