@@ -1,79 +1,108 @@
-# Submission ETL Pipeline - Analisis Produk Kompetitor Fashion Studio
+# 📦 Submission ETL Pipeline - Analisis Produk Kompetitor Fashion Studio
 
 ## 1. Deskripsi Proyek
 
-Proyek ini bertujuan untuk membangun ETL Pipeline guna mengambil, membersihkan, dan menyimpan data produk fashion dari kompetitor Fashion Studio. Pipeline ini mencakup proses scraping data dari website https://fashion-studio.dicoding.dev, melakukan transformasi data agar lebih bersih dan konsisten, serta menyimpan hasilnya ke CSV dan Google Sheets.
+Proyek ini bertujuan untuk membangun ETL pipeline yang mengambil data produk fashion dari situs [Fashion Studio](https://fashion-studio.dicoding.dev), melakukan transformasi dan pembersihan data, serta menyimpannya ke dalam CSV dan Google Sheets. Proyek ini mendukung analisis kompetitor di bidang fashion & design.
+
+---
 
 ## 2. Fitur dan Fungsionalitas
 
-- 🔄 **ETL Modular**
-  - Kode dibagi dalam 3 bagian: `extract.py`, `transform.py`, `load.py`
-  - Proses ETL dijalankan dari `main.py`
+### 🔄 ETL Modular
+- Struktur kode dipisah menjadi:
+  - `extract.py` – untuk scraping data
+  - `transform.py` – untuk membersihkan dan memformat data
+  - `load.py` – untuk menyimpan data
+- Pipeline dijalankan dari `main.py`
 
-- 🌐 **Web Scraping (Extract)**
-  - Scraping data dari seluruh halaman (1–50)
-  - Mengambil kolom: Title, Price, Rating, Colors, Size, Gender
+### 🌐 Extract (Web Scraping)
+- Mengambil data dari seluruh halaman (`page 1` sampai `page 50`)
+- Data yang dikumpulkan meliputi:
+  - `title`, `price`, `rating`, `colors`, `size`, `gender`
+- Menambahkan kolom `timestamp` saat proses scraping dilakukan
 
-- 🛠️ **Transformasi Data**
-  - Konversi harga dari USD ke Rupiah (1 USD = Rp16.000)
-  - Membersihkan format kolom rating, colors, size, dan gender
-  - Menghapus data duplikat, null, dan invalid seperti "Unknown Product"
-  - Menambahkan kolom `timestamp` saat scraping
+### 🛠️ Transform
+- Mengubah format dan tipe data:
+  - Harga dari USD → IDR (x16.000)
+  - Rating dari teks seperti `⭐ 4.8 / 5` → float
+  - Colors dari `3 Colors` → int
+  - Size dan Gender dibersihkan dari awalan seperti `Size:` atau `Gender:`
+- Menghapus data:
+  - `null`, `duplicated`, dan `"Unknown Product"`
 
-- 💾 **Penyimpanan Data (Load)**
-  - Menyimpan ke file CSV: `products.csv`
-  - Menyimpan ke Google Sheets (link):
-    https://docs.google.com/spreadsheets/d/1k92AH9CeNIfPGcev74udCj_TgyFNLS1tQ4tWfuQtyns
+### 💾 Load (Penyimpanan)
+- Menyimpan data hasil transformasi ke:
+  - `products.csv`
+  - Google Sheets (dengan akses publik sebagai Editor)
+
+---
 
 ## 3. Unit Test
 
-- Tersedia unit test untuk setiap modul:
-  - `test_extract.py`
-  - `test_transform.py`
-  - `test_load.py`
-- Dilakukan pengujian otomatis menggunakan `unittest`
-- Test coverage dihitung menggunakan `coverage.py`
-- Cakupan pengujian mencapai lebih dari 50%
+- Unit test tersedia untuk setiap tahap:
+  - `test_extract.py`, `test_transform.py`, `test_load.py`
+- Menggunakan `unittest` dan `coverage` untuk validasi fungsionalitas dan pengujian kualitas
+- Test coverage telah mencapai lebih dari **80%**
 
-## 4. Dependensi
+---
 
-Semua dependensi tercantum dalam file `requirements.txt`.
+## 4. Cara Menjalankan Proyek
 
-### Cara instal:
+### ✅ Instalasi Dependensi
+```bash
 pip install -r requirements.txt
+```
 
-## 5. Struktur Direktori
+### ▶️ Jalankan Pipeline ETL
+```bash
+python main.py
+```
 
+### 🧪 Jalankan Unit Test
+```bash
+python -m unittest discover tests
+```
+
+### 📊 Jalankan Test Coverage
+```bash
+coverage run -m unittest discover tests
+coverage report -m
+```
+
+---
+
+## 5. Struktur Proyek
+
+```
 ETL_pipeline/
-
 ├── main.py
-
 ├── requirements.txt
-
 ├── submission.txt
-
 ├── products.csv
-
 ├── google-sheets-api.json
-
 ├── utils/
-
-│ ├── extract.py
-
-│ ├── transform.py
-
-│ └── load.py
-
+│   ├── extract.py
+│   ├── transform.py
+│   └── load.py
 └── tests/
+    ├── test_extract.py
+    ├── test_transform.py
+    └── test_load.py
+```
 
-├── test_extract.py
+---
 
-├── test_transform.py
+## 6. Link Google Sheets
 
-└── test_load.py
+🔗 [https://docs.google.com/spreadsheets/d/1k92AH9CeNIfPGcev74udCj_TgyFNLS1tQ4tWfuQtyns](https://docs.google.com/spreadsheets/d/1k92AH9CeNIfPGcev74udCj_TgyFNLS1tQ4tWfuQtyns)
 
-## 6. Catatan
+- Akses: **Anyone with the link** can **Edit**
+- Service Account yang digunakan: `fashion@fashion-459301.iam.gserviceaccount.com`
 
-- Google Sheets telah diberikan akses publik untuk Editor
-- Service Account: fashion@fashion-459301.iam.gserviceaccount.com
-- Jumlah data hasil akhir setelah transformasi: ±1000 baris (bisa berkurang karena filter)
+---
+
+## 7. Catatan Tambahan
+
+- Jumlah data akhir setelah transformasi: ±1000 baris
+- Semua kolom sudah sesuai spesifikasi: tidak ada null, invalid, atau duplikat
+- Pipeline dapat dijalankan ulang tanpa kendala

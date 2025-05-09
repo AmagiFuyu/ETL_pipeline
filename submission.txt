@@ -1,0 +1,76 @@
+# Submission ETL Pipeline - Data Produk Fashion Studio
+
+## 📌 Cara Menjalankan Skrip ETL Pipeline
+
+1. Instal semua dependensi terlebih dahulu:
+   ```
+   pip install -r requirements.txt
+   ```
+
+2. Jalankan pipeline ETL:
+   ```
+   python main.py
+   ```
+
+   Proses ini akan mengeksekusi:
+   - Scraping data dari 50 halaman (sekitar 1000 produk)
+   - Transformasi dan pembersihan data
+   - Penyimpanan data ke CSV dan Google Sheets
+
+---
+
+## 🧪 Cara Menjalankan Unit Test
+
+1. Pastikan struktur folder `tests/` berisi file:
+   - `test_extract.py`
+   - `test_transform.py`
+   - `test_load.py`
+
+2. Jalankan semua test dengan perintah:
+   ```
+   python -m unittest discover tests
+   ```
+
+---
+
+## 📊 Cara Menjalankan Test Coverage
+
+1. Instal modul `coverage` (jika belum):
+   ```
+   pip install coverage
+   ```
+
+2. Jalankan test dengan coverage:
+   ```
+   coverage run -m unittest discover tests
+   ```
+
+3. Lihat hasil coverage:
+   ```
+   coverage report -m
+   ```
+
+4. (Opsional) Buat laporan HTML:
+   ```
+   coverage html
+   start htmlcov/index.html
+   ```
+
+---
+
+## 🔗 Link Google Sheets (Hasil Data)
+
+Data hasil transformasi juga disimpan di Google Sheets:
+
+🔗 https://docs.google.com/spreadsheets/d/1k92AH9CeNIfPGcev74udCj_TgyFNLS1tQ4tWfuQtyns
+
+- Akses: **Anyone with the link** sebagai **Editor**
+- Service account yang digunakan: `fashion@fashion-459301.iam.gserviceaccount.com`
+
+---
+
+## ✅ Keterangan Tambahan
+
+- Semua data telah difilter dari nilai `null`, `duplicate`, dan `invalid`
+- Data akhir terdiri dari kolom: `title`, `price`, `rating`, `colors`, `size`, `gender`, `timestamp`
+- Pipeline dapat dijalankan ulang kapan pun tanpa error
