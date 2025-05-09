@@ -7,14 +7,23 @@ This project implements a simple ETL (Extract, Transform, Load) pipeline for pro
 The project is organized as follows:
 
 ETL_pipeline/
+
 ├── tests/
+
 │   ├── test_extract.py
+
 │   ├── test_load.py
+
 │   └── test_transform.py
+
 └── utils/
+
 ├── extract.py
+
 ├── load.py
+
 └── transform.py
+
 └── README.md
 
 
