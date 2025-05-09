@@ -38,12 +38,12 @@ ETL_pipeline/
 
 ##  Requirements
 
-beautifulsoup4==4.13.4
-gspread==6.2.0
-gspread_dataframe==4.0.0
-pandas==2.2.3
-protobuf==4.25.3
-Requests==2.32.3
+- beautifulsoup4==4.13.4
+- gspread==6.2.0
+- gspread_dataframe==4.0.0
+- pandas==2.2.3
+- protobuf==4.25.3
+- Requests==2.32.3
 
 
 ## Setup
