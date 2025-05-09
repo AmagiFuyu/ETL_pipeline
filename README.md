@@ -45,18 +45,31 @@ pip install -r requirements.txt
 ## 5. Struktur Direktori
 
 ETL_pipeline/
+
 ├── main.py
+
 ├── requirements.txt
+
 ├── submission.txt
+
 ├── products.csv
+
 ├── google-sheets-api.json
+
 ├── utils/
+
 │ ├── extract.py
+
 │ ├── transform.py
+
 │ └── load.py
+
 └── tests/
+
 ├── test_extract.py
+
 ├── test_transform.py
+
 └── test_load.py
 
 ## 6. Catatan
