@@ -10,7 +10,7 @@ def transform_data(df):
 
     # Konversi kolom harga ke rupiah
     df["price"] = df["price"].str.replace("$", "").astype(float) * 16000
-    df["price"] = df["price"].astype(int)
+    df["price"] = df["price"].astype(float)
 
     # Konversi rating
     df["rating"] = df["rating"].str.extract(r"([\d.]+)").astype(float)
